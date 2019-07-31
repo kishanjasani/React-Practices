@@ -39,11 +39,21 @@ class App extends Component {
   }
 
   render() {
+
+    const style = {
+      backgroundColor: 'white',
+      font: 'inherit',
+      border: '1px solid blue',
+      padding: '8px',
+      margin: '0 1rem',
+      cursor: 'pointer'
+    }
+
     return (
       <div className="App">
         <h1>Hii, It's my First React App</h1>
-        <button onClick={this.counterHandler}>Counter</button>
-        <button onClick={this.switchNameHandler}>Switch Name</button>
+        <button style={style} onClick={this.counterHandler}>Counter</button>
+        <button style={style} onClick={this.switchNameHandler}>Switch Name</button>
         <h2>{this.state.count + ""}</h2>
         <Person
           name={this.state.persons[0].name}
