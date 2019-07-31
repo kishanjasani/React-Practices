@@ -13,12 +13,22 @@ class App extends Component {
     count: 0
   }
 
-  switchNameHandler = () => {
+  switchNameHandler = (newName) => {
     this.setState( {
       persons: [
         {name: "Kishan Jasani", age: 22},
         {name: "Manav", age: 21},
-        {name: "Meet Jasani", age: 15}
+        {name: newName, age: 15}
+      ]
+    })
+  }
+
+  nameChangeHandler = (event) => {
+    this.setState( {
+      persons: [
+        {name: "Kishan Jasani", age: 22},
+        {name: event.target.value, age: 21},
+        {name: "Meetulo", age: 15}
       ]
     })
   }
@@ -35,9 +45,18 @@ class App extends Component {
         <button onClick={this.counterHandler}>Counter</button>
         <button onClick={this.switchNameHandler}>Switch Name</button>
         <h2>{this.state.count + ""}</h2>
-        <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
-        <Person name={this.state.persons[1].name} age={this.state.persons[1].age}>Hobbies: Cricket, Reading Books</Person>
-        <Person name={this.state.persons[2].name} age={this.state.persons[2].age} />
+        <Person
+          name={this.state.persons[0].name}
+          age={this.state.persons[0].age} />
+        <Person
+          name={this.state.persons[1].name}
+          age={this.state.persons[1].age}
+          click={this.switchNameHandler}
+          changed={this.nameChangeHandler}>Hobbies: Cricket, Reading Books</Person>
+        <Person
+          name={this.state.persons[2].name}
+          age={this.state.persons[2].age}
+          click={this.switchNameHandler.bind(this, "Mitlo")}/>
       </div>
     );
   }
