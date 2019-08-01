@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import classes from './App.css';
-import Person from './Person/Person';
-import ErrorBoundry from './ErrorBoundry/ErrorBoundry';
+import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
 
@@ -54,38 +54,14 @@ class App extends Component {
     let persons = null;
     if (this.state.showPerson){
       persons = (
-        <div>
-        {
-          this.state.persons.map((person, index) => {
-            return <ErrorBoundry key={person.id}><Person
-            click={() => this.deletePersonHandler(index)}
-            changed={(event) => this.nameChangeHandler(event, person.id)}
-            name={person.name}
-            age={person.age} /></ErrorBoundry>
-          })
-        }
-          {/* <Person
-            name={this.state.persons[0].name}
-            age={this.state.persons[0].age} />
-          <Person
-            name={this.state.persons[1].name}
-            age={this.state.persons[1].age}>Hobbies: Cricket, Reading Books</Person>
-          <Person
-            name={this.state.persons[2].name}
-            age={this.state.persons[2].age}
-            click={this.switchNameHandler.bind(this, "Mitlo")}
-            changed={this.nameChangeHandler}/> */}
-        </div>
+          <Persons persons={this.state.persons} clicked={this.deletePersonHandler} changed={this.nameChangeHandler} />
       );
 
     }
 
     return (
       <div className={classes.App}>
-        <h1>Hii, It's my First React App</h1>
-        <button key="1" onClick={this.counterHandler}>Counter</button>
-        <button key="2" onClick={this.togglePersonHandler}>Show / Hide Persons</button>
-        <h2>{this.state.count}</h2>
+        <Cockpit persons={this.state.persons} counterHandler={this.counterHandler} togglePersonHandler={this.togglePersonHandler} count={this.state.count} />
         { persons }
       </div>
     );

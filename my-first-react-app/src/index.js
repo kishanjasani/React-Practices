@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import './App.css';
+import App from './containers/App';
+import './containers/App.css';
 // import Functional from './Functional';
 import * as serviceWorker from './serviceWorker';
 
