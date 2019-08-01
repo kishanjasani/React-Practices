@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import './App.css';
+import classes from './App.css';
 import Person from './Person/Person';
+import ErrorBoundry from './ErrorBoundry/ErrorBoundry';
 
 class App extends Component {
 
@@ -50,27 +51,17 @@ class App extends Component {
 
   render() {
 
-    const style = {
-      backgroundColor: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      margin: '0 1rem',
-      cursor: 'pointer'
-    };
-
     let persons = null;
     if (this.state.showPerson){
       persons = (
         <div>
         {
           this.state.persons.map((person, index) => {
-            return <Person
+            return <ErrorBoundry key={person.id}><Person
             click={() => this.deletePersonHandler(index)}
             changed={(event) => this.nameChangeHandler(event, person.id)}
             name={person.name}
-            age={person.age}
-            key={person.id}/>;
+            age={person.age} /></ErrorBoundry>
           })
         }
           {/* <Person
@@ -86,14 +77,14 @@ class App extends Component {
             changed={this.nameChangeHandler}/> */}
         </div>
       );
-      style.backgroundColor = 'red';
+
     }
 
     return (
-      <div className="App">
+      <div className={classes.App}>
         <h1>Hii, It's my First React App</h1>
-        <button style={style} key="1" onClick={this.counterHandler}>Counter</button>
-        <button style={style} key="2" onClick={this.togglePersonHandler}>Show / Hide Persons</button>
+        <button key="1" onClick={this.counterHandler}>Counter</button>
+        <button key="2" onClick={this.togglePersonHandler}>Show / Hide Persons</button>
         <h2>{this.state.count}</h2>
         { persons }
       </div>
