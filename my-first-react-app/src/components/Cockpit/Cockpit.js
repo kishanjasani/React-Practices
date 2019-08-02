@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useContext } from 'react';
 import Aux from '../../hoc/Aux';
 import AuthContext from '../../context/auth-context';
 
@@ -6,6 +6,9 @@ const cockpit = (props) => {
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const togleBtnRef  = useRef(null);
+
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const authContext = useContext(AuthContext);
     // Similar to componentDidMount and componentDidUpdate:
     // Only run when persons component update
     // useEffect(() => {
@@ -36,9 +39,7 @@ const cockpit = (props) => {
             <h1>Hii, It's my First React App</h1>
             <button key="1" onClick={props.counterHandler}>Counter</button>
             <button ref={togleBtnRef} key="2" onClick={props.togglePersonHandler}>Show / Hide Persons</button>
-            <AuthContext.Consumer>
-                {context => <button onClick={context.login}>Log In</button>}
-            </AuthContext.Consumer>
+            <button onClick={authContext.login}>Log In</button>
             <h2>{props.count}</h2>
         </Aux>
     );
