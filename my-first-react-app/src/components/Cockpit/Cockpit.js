@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import Aux from '../../hoc/Aux';
+import AuthContext from '../../context/auth-context';
 
 const cockpit = (props) => {
 
@@ -35,7 +36,9 @@ const cockpit = (props) => {
             <h1>Hii, It's my First React App</h1>
             <button key="1" onClick={props.counterHandler}>Counter</button>
             <button ref={togleBtnRef} key="2" onClick={props.togglePersonHandler}>Show / Hide Persons</button>
-            <button onClick={props.login}>Log In</button>
+            <AuthContext.Consumer>
+                {context => <button onClick={context.login}>Log In</button>}
+            </AuthContext.Consumer>
             <h2>{props.count}</h2>
         </Aux>
     );
