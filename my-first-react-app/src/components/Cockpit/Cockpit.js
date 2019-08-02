@@ -1,6 +1,30 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const cockpit = (props) => {
+    // Similar to componentDidMount and componentDidUpdate:
+    // Only run when persons component update
+    // useEffect(() => {
+    //     setTimeout(()=> {console.log('Fack Request')}, 1000);
+    //     console.log('Cockpit Hello');
+    // }, [props.persons]);
+    // Only run for first time
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    useEffect(() => {
+        setTimeout(()=> {alert('Fack Request')}, 1000);
+        console.log('Cockpit useEffect');
+        return () => {
+            console.log('Cockpit clean up in UseEffect');
+        };
+    }, []);
+
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    useEffect(() => {
+        console.log('Cockpit 2nd useEffect');
+        return () => {
+            console.log('Cockpit clean up in 2nd UseEffect');
+        };
+    });
+
     return (
         <div>
             <h1>Hii, It's my First React App</h1>
@@ -11,4 +35,4 @@ const cockpit = (props) => {
     );
 }
 
-export default cockpit;
+export default React.memo(cockpit);
