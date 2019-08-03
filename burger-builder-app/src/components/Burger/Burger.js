@@ -1,7 +1,6 @@
 import React from 'react';
 import classes from './Burger.css';
 import BurgerIngredient from './BurgerIngredient/BurgerIngredient';
-import { arch } from 'os';
 
 const burger = (props) => {
     let transfomedIngredients = Object.keys(props.ingredients)
