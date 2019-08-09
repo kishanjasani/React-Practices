@@ -26,6 +26,7 @@ class BurgerBuilder extends Component {
     }
 
     componentDidMount() {
+        console.log(this.props);
         axios.get('https://burger-react-db71a.firebaseio.com/ingredients.json')
             .then(res => {
                 const ingredients = res.data;
@@ -84,28 +85,29 @@ class BurgerBuilder extends Component {
     }
 
     purchaseContinueHandler = () => {
-        this.setState({spinner: true});
-        const order = {
-            ingredients: this.state.ingredients,
-            price: this.state.totalPrice,
-            customer: {
-                name: 'Kishan Jasani',
-                address: {
-                    street: 'ABC',
-                    zipCode: '656235',
-                    country: 'In'
-                },
-                email: 'test@hello.com'
-            },
-            deliveryMethod: 'Fastest'
-        }
-        axios.post('/orders.json', order)
-            .then(response => {
-                this.setState({spinner: true, purchasing: false})
-            })
-            .catch(error => {
-                this.setState({spinner: true, purchasing: false})
-            });
+        // this.setState({spinner: true});
+        // const order = {
+        //     ingredients: this.state.ingredients,
+        //     price: this.state.totalPrice,
+        //     customer: {
+        //         name: 'Kishan Jasani',
+        //         address: {
+        //             street: 'ABC',
+        //             zipCode: '656235',
+        //             country: 'In'
+        //         },
+        //         email: 'test@hello.com'
+        //     },
+        //     deliveryMethod: 'Fastest'
+        // }
+        // axios.post('/orders.json', order)
+        //     .then(response => {
+        //         this.setState({spinner: true, purchasing: false})
+        //     })
+        //     .catch(error => {
+        //         this.setState({spinner: true, purchasing: false})
+        //     });
+        this.props.history.push('/checkout');
     }
 
     purchaseHandler = () => {
